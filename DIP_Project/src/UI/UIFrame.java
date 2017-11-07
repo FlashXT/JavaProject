@@ -324,10 +324,10 @@ public class UIFrame extends JFrame implements ActionListener
     	dialog.show();
     }
         
-    public static void main(String[] args) 
-    {  
-        new UIFrame();        
-    }
+//    public static void main(String[] args) 
+//    {  
+//          
+//    }
     
     public void setMenu()
     {
