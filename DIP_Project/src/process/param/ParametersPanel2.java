@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 
-public class ParametersPanel extends Frame implements ActionListener 
+public class ParametersPanel2 extends Frame implements ActionListener 
 {
 	String str1, str2, par1, par2;
 	Button ok;
@@ -13,16 +13,16 @@ public class ParametersPanel extends Frame implements ActionListener
 	TextField pField, qField;
     Checkbox xbox, ybox;
     
-	public ParametersPanel(String s1, String s2, String p1, String p2)//ÎÄ±¾¿ò 
+	public ParametersPanel2(String s1, String s2, String p1, String p2)//ï¿½Ä±ï¿½ï¿½ï¿½ 
 	{		
-		setTitle("²ÎÊýÑ¡Ôñ");
+		setTitle("ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½");
 		setLayout(new FlowLayout());
 		str1 = s1;
 		str2 = s2;
 		par1 = p1;
 		par2 = p2;
 		 
-		ok = new Button("È·¶¨");
+		ok = new Button("È·ï¿½ï¿½");
 		pLabel = new Label(str1);
 		qLabel = new Label(str2);
 		pField = new TextField(p1, 5);
@@ -38,13 +38,13 @@ public class ParametersPanel extends Frame implements ActionListener
 		setSize(220, 100);
 		setVisible(true);
 		/*setBorder(new CompoundBorder(
-			BorderFactory.createTitledBorder("²ÎÊýÑ¡Ôñ"),
+			BorderFactory.createTitledBorder("ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½"),
 			BorderFactory.createEmptyBorder(10, 10, 50, 10)));*/
 	}
 	
-	public ParametersPanel(String s1, String s2) //°´Å¥
+	public ParametersPanel2(String s1, String s2) //ï¿½ï¿½Å¥
 	{
-		setTitle("ÇëÑ¡Ôñ¾µÏóÀàÐÍ");
+		setTitle("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		CheckboxGroup cbg = new CheckboxGroup();
 		xbox = new Checkbox(s1, cbg, true);
 		ybox = new Checkbox(s2, cbg, true);
@@ -52,7 +52,7 @@ public class ParametersPanel extends Frame implements ActionListener
 		setSize(220, 100);
 		setVisible(true);
 		/*setBorder(new CompoundBorder(
-		    BorderFactory.createTitledBorder("ÇëÑ¡Ôñ¾µÏóÀàÐÍ"),
+		    BorderFactory.createTitledBorder("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"),
 		    BorderFactory.createEmptyBorder(10, 10, 50, 10)));*/
 	}
 	

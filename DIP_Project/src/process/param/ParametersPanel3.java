@@ -5,14 +5,14 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 
-public class ParametersPanel extends JPanel 
+public class ParametersPanel3 extends JPanel 
 {
 	String str1, str2, par1, par2;
 	JLabel pLabel, qLabel;
 	JTextField pField, qField;
     Checkbox xbox, ybox;
     
-	public ParametersPanel(String s1, String s2, String p1, String p2)//ÎÄ±¾¿ò 
+	public ParametersPanel3(String s1, String s2, String p1, String p2)//ï¿½Ä±ï¿½ï¿½ï¿½ 
 	{
 		str1 = s1;
 		str2 = s2;
@@ -30,18 +30,18 @@ public class ParametersPanel extends JPanel
 		add(qField);
 		
 		setBorder(new CompoundBorder(
-			BorderFactory.createTitledBorder("²ÎÊýÑ¡Ôñ"),
+			BorderFactory.createTitledBorder("ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½"),
 			BorderFactory.createEmptyBorder(10, 10, 50, 10)));
 	}
 	
-	public ParametersPanel(String s1, String s2) //°´Å¥
+	public ParametersPanel3(String s1, String s2) //ï¿½ï¿½Å¥
 	{
 		CheckboxGroup cbg = new CheckboxGroup();
 		xbox = new Checkbox(s1, cbg, true);
 		ybox = new Checkbox(s2, cbg, true);
 		add(xbox); add(ybox);
 		setBorder(new CompoundBorder(
-		    BorderFactory.createTitledBorder("ÇëÑ¡Ôñ¾µÏóÀàÐÍ"),
+		    BorderFactory.createTitledBorder("ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"),
 		    BorderFactory.createEmptyBorder(10, 10, 50, 10)));
 	}
 	

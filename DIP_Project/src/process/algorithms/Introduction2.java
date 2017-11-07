@@ -9,13 +9,13 @@ package process.algorithms;
 import java.awt.image.*;
 import process.common.*;
 
-public class Introduction 
+public class Introduction2 
 {
 	public double getEntropy(int[] pix, int w, int h)
     {
         double H = 0.0;
         Common common = new Common();
-        int[] r = common.getHist(pix, w, h);//¼ÆËãÖ±·½Í¼
+        int[] r = common.getHist(pix, w, h);//ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½Í¼
         
         /*----------------------------------------------------*
          * log2(C) = log10(C)/log10(2)
@@ -32,7 +32,7 @@ public class Introduction
         return H;
     } 
         
-    //Æ½¾ùÖµ
+    //Æ½ï¿½ï¿½Öµ
     public double getAverage(int[] pix, int w, int h)
     {
     	double sum = 0.0;
@@ -50,12 +50,12 @@ public class Introduction
         for (int j = 0; j < 5; j++)
             for (int i = 0; i < 5; i++)
                 p[i+j*5] = pix[100 + i+(100 + j)*w]&0xff; 
-        //ÅÅÐò
+        //ï¿½ï¿½ï¿½ï¿½
         p = sorter(p, 25);             
-        return p[12];                                   //ÖÐÖµ
+        return p[12];                                   //ï¿½ï¿½Öµ
     }
     
-    //Ã°ÅÝÅÅÐò
+    //Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public int[] sorter(int[] dt, int m)
     {
         int tem;
@@ -70,12 +70,12 @@ public class Introduction
         return dt;
     }
     
-    //¾ù·½²î
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public double getSqsum(int[] pix, int w, int h)
     {
-        double aver = getAverage(pix, w, h);//¼ÆËãÆ½¾ùÖµ
+        double aver = getAverage(pix, w, h);//ï¿½ï¿½ï¿½ï¿½Æ½ï¿½ï¿½Öµ
         
-        //¼ÆËã·½²î
+        //ï¿½ï¿½ï¿½ã·½ï¿½ï¿½
         int b;
         double sqsum = 0.0;
         for (int i = 0; i < w*h; i++)
@@ -87,7 +87,7 @@ public class Introduction
         return sqsum;
     }
     
-    //¼ÆËãÉÏÈ·½ç¾àÀë
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½
     public int getSupDis(int[] pix1, int[] pix2, int w, int h)
     {
     	int g1, g2, tem, sup = 0;
@@ -102,13 +102,13 @@ public class Introduction
         return sup;
     }
         
-    //¼ÆËã¾ù·½¸ù¾àÀë
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public double getRmsDis(int[] pix1, int[] pix2, int w, int h)
     {
     	return Math.sqrt(getMSE(pix1,pix2,w,h));        
     }
     
-    //¼ÆËã¾ù·½Îó²îMSE
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½MSE
     public double getMSE(int[] pix1, int[] pix2, int w, int h)
     {  	
     	int g1, g2;
@@ -123,7 +123,7 @@ public class Introduction
         return sum;
     }
     
-    //¼ÆËã·åÖµÐÅÔë±ÈPSNR
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½PSNR
     public double getPSNR(int[] pix1, int[] pix2, int w, int h)
     {
     	double rms = getRmsDis(pix1, pix2, w, h);

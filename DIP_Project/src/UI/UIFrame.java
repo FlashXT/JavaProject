@@ -1,10 +1,9 @@
+package UI;
 /**
  * @Ch3Elements.java
  * @Version 1.0 2010.02.13
  * @Author Xie-Hua Sun 
  */
-
-package process.algorithms;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,7 @@ import process.algorithms.Elements;
 import process.param.*;
 import process.common.Common;
 
-public class Ch3Elements extends JFrame implements ActionListener
+public class UIFrame extends JFrame implements ActionListener
 {
         
     Image iImage, iImage2, oImage;
@@ -23,29 +22,29 @@ public class Ch3Elements extends JFrame implements ActionListener
     int[] pixels;          
              
     boolean loadflag  = false,
-            loadflag2 = false,    //µÚ2·ùÍ¼ÏñÔØÈë±êÖ¾
-            runflag   = false,    //Í¼Ïñ´¦ÀíÖ´ÐÐ±êÖ¾
-            mergeflag = false;    //Í¼ÏñºÏ³É±êÖ¾ 
+            loadflag2 = false,    //ç¬¬2å¹…å›¾åƒè½½å…¥æ ‡å¿—
+            runflag   = false,    //å›¾åƒå¤„ç†æ‰§è¡Œæ ‡å¿—
+            mergeflag = false;    //å›¾åƒåˆæˆæ ‡å¿— 
             
-    //²ÎÊýÑ¡ÔñÃæ°å
+    //å‚æ•°é€‰æ‹©é¢æ¿
     JButton okButton;
 	JDialog dialog;  
      
     Common common;
     Elements elements;
     
-    public Ch3Elements()
+    public UIFrame()
     {    
-        setTitle("Êý×ÖÍ¼Ïñ´¦Àí-Java±à³ÌÓëÊµÑé µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡");
+        setTitle("æ•°å­—å›¾åƒå¤„ç†-Javaç¼–ç¨‹ä¸Žå®žéªŒ ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€");
         this.setBackground(Color.lightGray);        
               
-        //²Ëµ¥½çÃæ
+        //èœå•ç•Œé¢
         setMenu();
         
         common = new Common();
         elements = new Elements();
         
-        //¹Ø±Õ´°¿Ú
+        //å…³é—­çª—å£
         closeWin();
             
         setSize(530, 330);
@@ -60,9 +59,9 @@ public class Ch3Elements extends JFrame implements ActionListener
     	      	  
         if (evt.getSource() == openItem) 
         {
-        	//ÎÄ¼þÑ¡Ôñ¶Ô»°¿ò
+        	//æ–‡ä»¶é€‰æ‹©å¯¹è¯æ¡†
             JFileChooser chooser = new JFileChooser();
-            common.chooseFile(chooser, "./images/ch3", 0);//ÉèÖÃÄ¬ÈÏÄ¿Â¼,¹ýÂËÎÄ¼þ
+            common.chooseFile(chooser, "./images/ch3", 0);//è®¾ç½®é»˜è®¤ç›®å½•,è¿‡æ»¤æ–‡ä»¶
             int r = chooser.showOpenDialog(null);                    
             
             if(r == JFileChooser.APPROVE_OPTION) 
@@ -77,9 +76,9 @@ public class Ch3Elements extends JFrame implements ActionListener
                 }   
 			    if(!loadflag)
 			    {
-	                //×°ÔØÍ¼Ïñ
+	                //è£…è½½å›¾åƒ
 				    iImage = common.openImage(name, tracker);    
-				    //È¡ÔØÈëÍ¼ÏñµÄ¿íºÍ¸ß
+				    //å–è½½å…¥å›¾åƒçš„å®½å’Œé«˜
 				    iw = iImage.getWidth(null);
 				    ih = iImage.getHeight(null);				    
 				    repaint();
@@ -87,7 +86,7 @@ public class Ch3Elements extends JFrame implements ActionListener
 			    else if(loadflag && (!runflag))
 			    {			        
 				    iImage2 = common.openImage(name, tracker);    
-				    common.draw(graph, iImage, "Ô­Í¼1", iImage2, "Ô­Í¼2");
+				    common.draw(graph, iImage, "åŽŸå›¾1", iImage2, "åŽŸå›¾2");
 				    repaint();			    	
 			    }				               
             }
@@ -96,105 +95,105 @@ public class Ch3Elements extends JFrame implements ActionListener
         }
         else if (evt.getSource() == grayItem)
         {
-        	setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ ×ª±äÎª»Ò¶ÈÍ¼Ïñ ×÷Õß ËïÛÆ»ª");
+        	setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ è½¬å˜ä¸ºç°åº¦å›¾åƒ ä½œè€… å­™ç‡®åŽ");
         	if(loadflag)        	
         	{ 
         	    pixels = common.grabber(iImage, iw, ih);
 				
-				//×ª±äÎª»Ò¶ÈÍ¼Ïñ
+				//è½¬å˜ä¸ºç°åº¦å›¾åƒ
 				pixels = elements.toGray(pixels, iw, ih);
 				
-				//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
-				showPix(graph, pixels, "×ª±ä½á¹û");
+				//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
+				showPix(graph, pixels, "è½¬å˜ç»“æžœ");
 				repaint();				
 			}
         }
         else if (evt.getSource() == threshItem)
         { 
-            setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ »Ò¶ÈãÐÖµ±ä»» ×÷Õß ËïÛÆ»ª");       	
+            setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ ç°åº¦é˜ˆå€¼å˜æ¢ ä½œè€… å­™ç‡®åŽ");       	
         	if(loadflag)        	
         	{
         		pixels = common.grabber(iImage, iw, ih);				
 				
-				int thresh = common.getParam("ÊäÈëãÐÖµ(0~255)","100");//»ñÈ¡ãÐÖµ	    		
+				int thresh = common.getParam("è¾“å…¥é˜ˆå€¼(0~255)","100");//èŽ·å–é˜ˆå€¼	    		
 				
 				if(thresh > 255)
 					thresh = 255;				
 				else if(thresh<0)	
 					thresh = 0;				
 				
-	    		//¶ÔÍ¼Ïñ½øÐÐãÐÖµ±ä»»
+	    		//å¯¹å›¾åƒè¿›è¡Œé˜ˆå€¼å˜æ¢
 	    		pixels = elements.thresh(pixels, iw, ih, thresh);
 						
-				//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
-				showPix(graph, pixels, "±ä»»½á¹û");
+				//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
+				showPix(graph, pixels, "å˜æ¢ç»“æžœ");
 				repaint();
 			}
 			else
-			 	JOptionPane.showMessageDialog(null, "ÇëÏÈ´ò¿ªÍ¼Ïñ!");             	                     
+			 	JOptionPane.showMessageDialog(null, "è¯·å…ˆæ‰“å¼€å›¾åƒ!");             	                     
 	    }
         else if (evt.getSource() == linearItem)
         {   
-            setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ »Ò¶ÈÏßÐÔ±ä»» ×÷Õß ËïÛÆ»ª");
+            setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ ç°åº¦çº¿æ€§å˜æ¢ ä½œè€… å­™ç‡®åŽ");
                    	
            	if(loadflag)
         	{ 
-        	    Parameters pp = new Parameters("²ÎÊý","î×ÂÊ:",
-        	                                   "½Ø¾à:", "1.2", "10");
-        	    setPanel(pp, "ÏßÐÔ±ä»»");
+        	    Parameters pp = new Parameters("å‚æ•°","é’­çŽ‡:",
+        	                                   "æˆªè·:", "1.2", "10");
+        	    setPanel(pp, "çº¿æ€§å˜æ¢");
         	    
 	        	float p = pp.getPadx();
 	        	int   q = (int)pp.getPady();
 	               	       		
 				pixels = common.grabber(iImage, iw, ih);		
 				
-				//¶ÔÍ¼Ïñ½øÐÐ½øÐÐÏßÐÔÀ­Éì
+				//å¯¹å›¾åƒè¿›è¡Œè¿›è¡Œçº¿æ€§æ‹‰ä¼¸
 				pixels = elements.linetrans(pixels, iw, ih, p, q);
 				
-				//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
-				showPix(graph, pixels, "±ä»»½á¹û");
+				//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
+				showPix(graph, pixels, "å˜æ¢ç»“æžœ");
 				repaint();
 			}
 			else
-				JOptionPane.showMessageDialog(null,"ÇëÏÈ´ò¿ªÍ¼Ïñ!");	        	        	
+				JOptionPane.showMessageDialog(null,"è¯·å…ˆæ‰“å¼€å›¾åƒ!");	        	        	
         }
         else if (evt.getSource() == okButton)
            	dialog.dispose();        
         else if (evt.getSource() == falsecItem)
         {
-        	setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ Î±²ÊÉ«±ä»» ×÷Õß ËïÛÆ»ª");        	
+        	setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ ä¼ªå½©è‰²å˜æ¢ ä½œè€… å­™ç‡®åŽ");        	
            	if(loadflag)
         	{        		
 				pixels = common.grabber(iImage, iw, ih);		
 				
 				int p = 64, q = 192;
 								
-				//¶ÔÍ¼Ïñ½øÐÐ½øÐÐÏßÐÔÀ­Éì
+				//å¯¹å›¾åƒè¿›è¡Œè¿›è¡Œçº¿æ€§æ‹‰ä¼¸
 				pixels = elements.falseColor(pixels, iw, ih, p, q);
 				
-				//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
-				showPix(graph, pixels, "±ä»»½á¹û");
+				//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
+				showPix(graph, pixels, "å˜æ¢ç»“æžœ");
 				repaint();
 			}
 			else
-			 	JOptionPane.showMessageDialog(null,"ÇëÏÈ´ò¿ªÍ¼Ïñ!");            	                      
+			 	JOptionPane.showMessageDialog(null,"è¯·å…ˆæ‰“å¼€å›¾åƒ!");            	                      
 	    }
-        else if (evt.getSource() == combinItem)//Í¼ÏñÈÚºÏ
+        else if (evt.getSource() == combinItem)//å›¾åƒèžåˆ
         {
-        	setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ Í¼ÏñÈÚºÏ ×÷Õß ËïÛÆ»ª");  
+        	setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ å›¾åƒèžåˆ ä½œè€… å­™ç‡®åŽ");  
         	if(loadflag && loadflag2)
         	{        	         	
-	        	float p1 = 0.5f, p2 = 0.5f;   //Í¼ÏñÈÚºÏÏµÊý£¬p1+p2=1				
+	        	float p1 = 0.5f, p2 = 0.5f;   //å›¾åƒèžåˆç³»æ•°ï¼Œp1+p2=1				
 				
-				//½«µÚ1¸öÍ¼ÏñiImageµÄÏñËØ¸³ÓÚÊý×épixels1
+				//å°†ç¬¬1ä¸ªå›¾åƒiImageçš„åƒç´ èµ‹äºŽæ•°ç»„pixels1
 				int[] pixels1 = common.grabber(iImage, iw, ih);
 				
-				//½«µÚ2¸öÍ¼ÏñiImage2µÄÏñËØ¸³ÓÚÊý×épixels2
+				//å°†ç¬¬2ä¸ªå›¾åƒiImage2çš„åƒç´ èµ‹äºŽæ•°ç»„pixels2
 				int[] pixels2 = common.grabber(iImage2, iw, ih);
 				
 				int[] mpixels = elements.combine(pixels1, pixels2, iw, ih, p1, p2);
 				
-				//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
+				//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
 				ImageProducer ip = new MemoryImageSource(iw, ih, mpixels, 0, iw);
 				oImage = createImage(ip);             
 			    ResultShow result = new ResultShow(oImage);
@@ -202,12 +201,12 @@ public class Ch3Elements extends JFrame implements ActionListener
 			  	runflag = true;							    	
 			}
 			else
-			    JOptionPane.showMessageDialog(null, "ÇëÏÈ´ò¿ªÁ½·ùÍ¼Ïñ!");                     
+			    JOptionPane.showMessageDialog(null, "è¯·å…ˆæ‰“å¼€ä¸¤å¹…å›¾åƒ!");                     
 		}
-		else if (evt.getSource() == mergeItem)//Í¼ÏñºÏ³É
+		else if (evt.getSource() == mergeItem)//å›¾åƒåˆæˆ
         {
         	Image img = null;
-        	setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ Í¼ÏñºÏ³É ×÷Õß ËïÛÆ»ª");
+        	setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ å›¾åƒåˆæˆ ä½œè€… å­™ç‡®åŽ");
         	img = common.openImage("./images/ch3/fish.gif",tracker); 
             iImage = common.openImage("./images/ch3/sea.jpg",tracker);
             bImage = (BufferedImage)this.createImage(256, 256);                	 	    
@@ -219,28 +218,28 @@ public class Ch3Elements extends JFrame implements ActionListener
 			    ih = img.getHeight(this);        		
         		int[] pix = elements.merge(img, iw, ih);
         		
-			    //½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
+			    //å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
 		        ImageProducer ip = new MemoryImageSource(iw, ih, pix, 0, iw);
 		        img = createImage(ip); 
 		        BufferedImage oImage = (BufferedImage)this.createImage(256, 256);                	 	    
 		  	    oImage.createGraphics().drawImage(iImage, 0, 0, this);
 			    oImage.createGraphics().drawImage(img, 150, 120, this);
-			    common.draw(graph, bImage, "Ô­Í¼", oImage, "Í¼ÏñºÏ³É");			    
+			    common.draw(graph, bImage, "åŽŸå›¾", oImage, "å›¾åƒåˆæˆ");			    
         	}	         
 		    else
 		    {   
 			    mergeflag = true;			    	    
-			    common.draw(graph, bImage, 5, 50, "Ç°¾°Óë±³¾°Í¼");
+			    common.draw(graph, bImage, 5, 50, "å‰æ™¯ä¸ŽèƒŒæ™¯å›¾");
 		    }       	
         } 
-        else if (evt.getSource() == drawItem)//Í¼ÏñÖÆ×÷
+        else if (evt.getSource() == drawItem)//å›¾åƒåˆ¶ä½œ
         {
-        	setTitle("µÚ3ÕÂ Í¼Ïñ´¦Àí»ù´¡ Í¼ÏñÖÆ×÷ ×÷Õß ËïÛÆ»ª");        	
+        	setTitle("ç¬¬3ç«  å›¾åƒå¤„ç†åŸºç¡€ å›¾åƒåˆ¶ä½œ ä½œè€… å­™ç‡®åŽ");        	
             ImageProducer ip = new MemoryImageSource(16, 16, pixs, 0, 16);
             Image smiler = createImage(ip);        	
       	    bImage = (BufferedImage)this.createImage(128, 128);
     	    bImage.createGraphics().drawImage(smiler, 0, 0, 128, 128, this);
-      	    common.draw(graph, bImage, 50, 120, "Í¼ÏñÖÆ×÷");  
+      	    common.draw(graph, bImage, 50, 120, "å›¾åƒåˆ¶ä½œ");  
         }   
         else if (evt.getSource() == exitItem) 
             System.exit(0);       
@@ -276,22 +275,22 @@ public class Ch3Elements extends JFrame implements ActionListener
         {
         	g.clearRect(0, 0, 260, 350);        	
             g.drawImage(iImage, 5, 50, null);
-            g.drawString("Ô­Í¼", 120, 320);
+            g.drawString("åŽŸå›¾", 120, 320);
         }
         else if(mergeflag)
         {
         	g.clearRect(0, 0, 260, 350);        	
             g.drawImage(bImage, 5, 50, null);
-            g.drawString("Ç°¾°Óë±³¾°Í¼", 100, 320);
+            g.drawString("å‰æ™¯ä¸ŽèƒŒæ™¯å›¾", 100, 320);
         }             
     }
     
     public void showPix(Graphics graph, int[] pixels, String str)
     {    
-		//½«Êý×éÖÐµÄÏóËØ²úÉúÒ»¸öÍ¼Ïñ
+		//å°†æ•°ç»„ä¸­çš„è±¡ç´ äº§ç”Ÿä¸€ä¸ªå›¾åƒ
 		ImageProducer ip = new MemoryImageSource(iw, ih, pixels, 0, iw);
 		Image oImage = createImage(ip);
-		common.draw(graph, iImage, "Ô­Í¼", oImage, str);
+		common.draw(graph, iImage, "åŽŸå›¾", oImage, str);
 		runflag = true;
 	}
     
@@ -309,10 +308,10 @@ public class Ch3Elements extends JFrame implements ActionListener
     public void setPanel(Parameters pp, String s)
     {
     	JPanel buttonsPanel = new JPanel();  
-	    okButton     = new JButton("È·¶¨");				
+	    okButton     = new JButton("ç¡®å®š");				
         okButton.addActionListener(this);
         
-    	dialog = new JDialog(this, s+ " ²ÎÊýÑ¡Ôñ", true);     
+    	dialog = new JDialog(this, s+ " å‚æ•°é€‰æ‹©", true);     
         
         Container contentPane = getContentPane();
 		Container dialogContentPane = dialog.getContentPane();
@@ -327,53 +326,53 @@ public class Ch3Elements extends JFrame implements ActionListener
         
     public static void main(String[] args) 
     {  
-        new Ch3Elements();        
+        new UIFrame();        
     }
     
     public void setMenu()
     {
-    	//²Ëµ¥½çÃæ
-        Menu fileMenu = new Menu("ÎÄ¼þ");
-        openItem = new MenuItem("´ò¿ª");
+    	//èœå•ç•Œé¢
+        Menu fileMenu = new Menu("æ–‡ä»¶");
+        openItem = new MenuItem("æ‰“å¼€");
         openItem.addActionListener(this);
         fileMenu.add(openItem);
 
-        exitItem = new MenuItem("ÍË³ö");
+        exitItem = new MenuItem("é€€å‡º");
         exitItem.addActionListener(this);
         fileMenu.add(exitItem);        
         
-        Menu processMenu = new Menu("Í¼Ïñ´¦Àí");
-        grayItem = new MenuItem("±äÎª»Ò¶ÈÍ¼Ïñ");
+        Menu processMenu = new Menu("å›¾åƒå¤„ç†");
+        grayItem = new MenuItem("å˜ä¸ºç°åº¦å›¾åƒ");
         grayItem.addActionListener(this);
         processMenu.add(grayItem);
         
         processMenu.addSeparator();        
-        threshItem = new MenuItem("ãÐÖµ±ä»»");
+        threshItem = new MenuItem("é˜ˆå€¼å˜æ¢");
         threshItem.addActionListener(this);
         processMenu.add(threshItem);        
         
         processMenu.addSeparator();
-        linearItem = new MenuItem("ÏßÐÔ±ä»»");
+        linearItem = new MenuItem("çº¿æ€§å˜æ¢");
         linearItem.addActionListener(this);
         processMenu.add(linearItem);       
         
         processMenu.addSeparator();
-        falsecItem = new MenuItem("Î±²ÊÉ«´¦Àí");
+        falsecItem = new MenuItem("ä¼ªå½©è‰²å¤„ç†");
         falsecItem.addActionListener(this);
         processMenu.add(falsecItem);        
         
         processMenu.addSeparator();
-        combinItem = new MenuItem("Í¼ÏñÈÚºÏ");
+        combinItem = new MenuItem("å›¾åƒèžåˆ");
         combinItem.addActionListener(this);
         processMenu.add(combinItem);        
         
-        Menu makeMenu = new Menu("Í¼ÏñÖÆ×÷");
-        mergeItem = new MenuItem("Í¼ÏñºÏ³É");
+        Menu makeMenu = new Menu("å›¾åƒåˆ¶ä½œ");
+        mergeItem = new MenuItem("å›¾åƒåˆæˆ");
         mergeItem.addActionListener(this);
         makeMenu.add(mergeItem);
         
         makeMenu.addSeparator();        
-        drawItem = new MenuItem("ÖÆ×÷Í¼Ïñ");
+        drawItem = new MenuItem("åˆ¶ä½œå›¾åƒ");
         drawItem.addActionListener(this);
         makeMenu.add(drawItem);
         
