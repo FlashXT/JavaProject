@@ -1,6 +1,6 @@
 package HomeWork2;
 
-import MyAlgorithms.algorithms;
+import MyAlgorithms.Binaryzation;
 import UI.UIFrame;
 
 public class MainClass {
@@ -12,7 +12,7 @@ public class MainClass {
 		 try {
 			 	BMP bmp = new BMP(src);
 			 	bmp.toString();
-			 	algorithms.Binaryzation(bmp,"lena2.bmp",30);
+			 	new Binaryzation(bmp,"lena2.bmp",30);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			    e.printStackTrace();

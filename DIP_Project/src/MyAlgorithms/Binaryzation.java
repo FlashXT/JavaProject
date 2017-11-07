@@ -4,9 +4,9 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import HomeWork2.BMP;
 
-public class algorithms {
+public class Binaryzation {
 	
-		public static void   Binaryzation(BMP bitmap,String dest,int threshold) throws Exception{
+		public Binaryzation(BMP bitmap,String dest,int threshold) throws Exception{
 			
 			 FileOutputStream fos=new FileOutputStream(dest);
 			 DataOutputStream dos = new DataOutputStream(fos);

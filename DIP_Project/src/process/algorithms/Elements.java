@@ -12,7 +12,7 @@ import process.common.Common;
 
 public class Elements
 {    
-    //×ª±äÎª»Ò¶ÈÍ¼Ïñ
+    //×ªï¿½ï¿½Îªï¿½Ò¶ï¿½Í¼ï¿½ï¿½
     public int[] toGray(int[] pix, int iw, int ih)
     {    
 		ColorModel cm = ColorModel.getRGBdefault();
@@ -29,7 +29,7 @@ public class Elements
 		return pix;
 	}	
 				
-    //»Ò¶ÈãÐÖµ±ä»»
+    //ï¿½Ò¶ï¿½ï¿½ï¿½Öµï¿½ä»»
     public int[] thresh(int[] pix, int iw, int ih, int th)
     {    
 		ColorModel cm = ColorModel.getRGBdefault();
@@ -49,7 +49,7 @@ public class Elements
 		return pix;
     }
     
-    //ÏßÐÔ±ä»»
+    //ï¿½ï¿½ï¿½Ô±ä»»
     public int[] linetrans(int[] pix, int iw, int ih, float p, int q)
     {
 		ColorModel cm = ColorModel.getRGBdefault();
@@ -61,7 +61,7 @@ public class Elements
 			g = cm.getGreen(pix[i]);
 			b = cm.getBlue(pix[i]);
 			
-			//Ôö¼ÓÍ¼ÏñÁÁ¶È
+			//ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			r  = (int)(p * r + q);
 			g  = (int)(p * g + q);
 			b  = (int)(p * b + q);
@@ -75,7 +75,7 @@ public class Elements
 		return pix;
 	}
 	
-	//Î±²ÊÉ«´¦Àí
+	//Î±ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½
     public int[] falseColor(int[] pix, int iw, int ih, int p, int q)
     {    	
 		ColorModel cm = ColorModel.getRGBdefault();
@@ -88,17 +88,17 @@ public class Elements
 				r = cm.getRed(pix[j*iw+i]);
 				g = cm.getGreen(pix[j*iw+i]);
 				b = cm.getBlue(pix[j*iw+i]);
-				//R±ä»»
+				//Rï¿½ä»»
 	            if (r < p) r = 0;
 	            else if (r >= p && r < q) r = (int)((r - p) * 255 / (q - p));
 	            else r = 255;
 	
-	            //G±ä»»
+	            //Gï¿½ä»»
 	            if (g < p) g = (int)(g * 255 / p);
 	            else if (g >= p && g < q) g = 255;
 	            else g = (int)((255 - g) * 255 / (255 - q));
 	
-	            //B±ä»»
+	            //Bï¿½ä»»
 	            if (b < p) b = 255;
 	            else if (b >= p && b < q) b = (int)((q - b) * 255 / (q - p));
 	            else b = 0;
@@ -109,7 +109,7 @@ public class Elements
 		return pix;
 	}
 	
-    //Í¼ÏñÈÚºÏ
+    //Í¼ï¿½ï¿½ï¿½Úºï¿½
     public int[] combine(int[] pix1,int[] pix2,int iw, int ih, float p1, float p2)
     {
     	ColorModel cm = ColorModel.getRGBdefault();
@@ -132,7 +132,7 @@ public class Elements
 		return mpix;
     }
     
-    //Í¼ÏñºÏ³É
+    //Í¼ï¿½ï¿½Ï³ï¿½
     public int[] merge(Image img, int w, int h)
     {
     	int r, g, b;		
@@ -144,7 +144,7 @@ public class Elements
             r = cm.getRed(pix[i]);		
 		    g = cm.getGreen(pix[i]);
 		    b = cm.getBlue(pix[i]);
-		    //±³¾°Í¸Ã÷¶È¸ÄÎª0  
+		    //ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½È¸ï¿½Îª0  
 		    if(r > 230 && g > 230 && b > 230)
 		        pix[i] = 0 << 24|r << 16|g << 8|b;		    
 	    }
