@@ -35,8 +35,8 @@ public class UIFrame extends JFrame implements ActionListener
     
     public UIFrame()
     {    
-        setTitle("数字图像处理-Java编程与实验 第3章 图像处理基础");
-        this.setBackground(Color.lightGray);        
+        setTitle("Digital Image Processing");
+        this.setBackground(Color.white);        
               
         //菜单界面
         setMenu();
@@ -61,7 +61,7 @@ public class UIFrame extends JFrame implements ActionListener
         {
         	//文件选择对话框
             JFileChooser chooser = new JFileChooser();
-            common.chooseFile(chooser, "./images/ch3", 0);//设置默认目录,过滤文件
+            common.chooseFile(chooser, "./images/", 0);//设置默认目录,过滤文件
             int r = chooser.showOpenDialog(null);                    
             
             if(r == JFileChooser.APPROVE_OPTION) 
@@ -324,10 +324,10 @@ public class UIFrame extends JFrame implements ActionListener
     	dialog.show();
     }
         
-//    public static void main(String[] args) 
-//    {  
-//          
-//    }
+    public static void main(String[] args) 
+    {  
+       new UIFrame();   
+    }
     
     public void setMenu()
     {
