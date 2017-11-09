@@ -1,11 +1,27 @@
 package MyAlgorithms;
 
 import java.io.DataOutputStream;
+
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
+import java.awt.peer.ComponentPeer;
+import java.awt.peer.LightweightPeer;
+
+import javax.imageio.ImageIO;
 
 import HomeWork2.BMP;
+import HomeWork2.MyImage;
+import HomeWork2.JPG;
 
-public class Algorithms {
+public class Algorithms extends JFrame {
+	
+	
+	
 	public static void Binaryzation(BMP bitmap,String dest,int threshold) throws Exception{
 		
 		 FileOutputStream fos=new FileOutputStream(dest);
@@ -53,10 +69,38 @@ public class Algorithms {
 		fos.close();dos.close();
 	}
 
-
-	public static void IamgeFusion(){
+	public static void ImageFusion(MyImage img1,MyImage img2,double rate1,double rate2,String dest) throws IOException{
 		
 		
 		
+		JPG jpg1 = (JPG) img1;
+		JPG jpg2 = (JPG) img2;
+		int  [] mpixels = new int [jpg1.getWidth()*jpg1.getHeight()];
+		int [][][]jpg1Data = jpg1.getJpgData();
+		int [][][]jpg2Data = jpg2.getJpgData();
+		int r,g,b;
+		for(int i = 0 ; i < jpg1Data.length ; i++){
+			for(int j = 0; j < jpg1Data[i].length ; j++){
+				
+				r = (int) (jpg1Data[i][j][0]*rate1+jpg2Data[i][j][0]*rate2);
+				g = (int) (jpg1Data[i][j][1]*rate1+jpg2Data[i][j][1]*rate2);
+				b = (int) (jpg1Data[i][j][2]*rate1+jpg2Data[i][j][2]*rate2);
+				mpixels[i*jpg1.getWidth()+j] = Rgb2Int(r, g, b);
+//				fusionimage.setRGB(j,i,Rgb2Int(jpg1.getJpgData()[i][j][0],jpg1.getJpgData()[i][j][1],jpg1.getJpgData()[i][j][2]));
+				
+			}
+		}
+		
+//		snew drawImage().paintComponent(graph,jpg1.getWidth(),jpg1.getHeight(),mpixels);
+	    System.out.println("Complete!");		
+			
 	}
+	
+	public static int Rgb2Int(int red, int green, int blue){
+		
+		return 255 << 24|red<<16|green<<8|blue;
+	
+	}
+	
+	
 }

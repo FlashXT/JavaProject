@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class BMP {
+public class BMP extends MyImage{
 	
 	//define the bitmap file header
 		//define the header of bitmap

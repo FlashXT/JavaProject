@@ -9,10 +9,73 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
-public class JPG{
+public class JPG extends MyImage{
+	
+	int width;
+	int height;
+	String imagepath;
+	int [][][] jpgData;
+	
+	
+	public String getImagepath() {
+		return imagepath;
+	}
+	public void setImagepath(String imagepath) {
+		this.imagepath = imagepath;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public int[][][] getJpgData() {
+		return jpgData;
+	}
+	public void setJpgData(int[][][] jpgData) {
+		this.jpgData = jpgData;
+	}
+	
 	
 	//Constructor
-	public JPG(){}
+	public JPG(){ }
+	public JPG(String path){
+		 File file = new File(path);
+		 BufferedImage image = null;
+		 try {
+				image = ImageIO.read(file);
+			 } catch (IOException e) {
+				// TODO Auto-generated catch block
+					e.printStackTrace();
+					System.out.println("Can't find the Image !");
+			 }
+		 this.width= image.getWidth();
+		 this.height= image.getHeight();
+		 this.imagepath = path;
+		 this.jpgData = new int [this.height][this.width][3];
+		 for (int i = 0; i < this.height; i++) {
+	            for (int j = 0; j < this.width; j++) {
+	                int pixel = image.getRGB(j,i); // 涓嬮潰涓夎浠ｇ爜灏嗕竴涓暟瀛楄浆鎹负RGB鏁板瓧
+	                this.jpgData[i][j][0] = (pixel & 0xff0000) >> 16;
+	            	this.jpgData[i][j][1] = (pixel & 0xff00) >> 8;
+	            	this.jpgData[i][j][2] = (pixel & 0xff);
+		        }
+	     }
+		 
+		
+	}
+	
+	
+	
+	
 	public JPG(String imagepath,String destpath){
 	        File file = new File(imagepath);
 	        BufferedImage image = null;
@@ -26,7 +89,7 @@ public class JPG{
 				}
 		        int width = image.getWidth();
 		        int height = image.getHeight();
-			    int [][][] jpgData = new int[height][width][3];
+			    jpgData = new int[height][width][3];
 			    System.out.println("Width:"+width);
 			   
 			    System.out.println("Height:"+height);
@@ -34,13 +97,13 @@ public class JPG{
 			    System.out.println("jpgData[0].length:"+jpgData[0].length);
 			    for (int i = 0; i < height; i++) {
 		            for (int j = 0; j < width; j++) {
-		                int pixel = image.getRGB(j,i); // 下面三行代码将一个数字转换为RGB数字
+		                int pixel = image.getRGB(j,i); // 涓嬮潰涓夎浠ｇ爜灏嗕竴涓暟瀛楄浆鎹负RGB鏁板瓧
 		                jpgData[i][j][0] = (pixel & 0xff0000) >> 16;
 		            	jpgData[i][j][1] = (pixel & 0xff00) >> 8;
 		            	jpgData[i][j][2] = (pixel & 0xff);
 			        }
 		   }
-		    //输出图片的像素数据
+		    //杈撳嚭鍥剧墖鐨勫儚绱犳暟鎹�
 			try {
 					fos = new FileOutputStream("jpgData.txt");				
 					DataOutputStream dos = new DataOutputStream(fos);
@@ -62,7 +125,7 @@ public class JPG{
 		
 	}
 	
-	//像素级修改jpg图片
+	//鍍忕礌绾т慨鏀筳pg鍥剧墖
 	public void jpgWriter(String src,String dest) throws IOException{
 		    File file = new File(src);
 	        BufferedImage image = null;
@@ -80,7 +143,7 @@ public class JPG{
 		    
 		    for (int i = 0; i < height; i++) {
 	            for (int j = 0; j < width; j++) {
-	                int pixel = image.getRGB(j,i); // 下面三行代码将一个数字转换为RGB数字
+	                int pixel = image.getRGB(j,i); // 涓嬮潰涓夎浠ｇ爜灏嗕竴涓暟瀛楄浆鎹负RGB鏁板瓧
 	                jpgData[i][j][0] = (pixel & 0xff0000) >> 16;
 	            	jpgData[i][j][1] = (pixel & 0xff00) >> 8;
 	            	jpgData[i][j][2] = (pixel & 0xff);
@@ -104,6 +167,22 @@ public class JPG{
 		return red<<16|green<<8|blue;
 	
 	}
+	
+	
+	public BufferedImage getBufferedImage(){
+	 	File file = new File(this.getImagepath());
+        BufferedImage image = null;
+		try {
+			image = ImageIO.read(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Can't find the Image !");
+			}
+	
+	return image;
+
+}
 	public static void main(String[] args) throws Exception {
 			// TODO Auto-generated method stub
 	        new JPG().jpgWriter("images\\flash.jpg","images\\flash2.jpg");
