@@ -2,10 +2,12 @@ package HomeWork2;
 
 import java.io.IOException;
 
+import javax.swing.JPanel;
+
 import MyAlgorithms.Algorithms;
 import UI.UIFrame;
 
-public class MainClass extends JPannel{
+public class MainClass extends JPanel{
 
 	public static void main(String[] args) throws IOException{
 		
