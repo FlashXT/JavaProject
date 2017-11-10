@@ -23,10 +23,10 @@ public class MainClass extends JPanel{
 //			    e.printStackTrace();
 //		}
 		
-	    JPG jpg1 = new JPG("images\\Fig1.jpg");
-	    JPG jpg2 = new JPG("images\\Fig1.jpg");
-	    String dest = "Figfusion.jpg";
-	    Algorithms.ImageFusion(jpg1,jpg2,0.5,0.5,dest);
+//	    JPG jpg1 = new JPG("images\\Fig1.jpg");
+//	    JPG jpg2 = new JPG("images\\Fig1.jpg");
+//	    String dest = "Figfusion.jpg";
+//	    Algorithms.ImageFusion(jpg1,jpg2,0.5,0.5,dest);
 	    
 	}
 

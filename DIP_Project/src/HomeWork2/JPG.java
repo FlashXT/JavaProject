@@ -15,8 +15,15 @@ public class JPG extends MyImage{
 	int height;
 	String imagepath;
 	int [][][] jpgData;
+	int graylevel;
 	
 	
+	public int getGraylevel() {
+		return graylevel;
+	}
+	public void setGraylevel(int graylevel) {
+		this.graylevel = graylevel;
+	}
 	public String getImagepath() {
 		return imagepath;
 	}
@@ -59,6 +66,8 @@ public class JPG extends MyImage{
 			 }
 		 this.width= image.getWidth();
 		 this.height= image.getHeight();
+		 
+		 this.graylevel = 256;
 		 this.imagepath = path;
 		 this.jpgData = new int [this.height][this.width][3];
 		 for (int i = 0; i < this.height; i++) {

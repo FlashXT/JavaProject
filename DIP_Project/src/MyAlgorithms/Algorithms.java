@@ -20,7 +20,7 @@ import HomeWork2.BMP;
 import HomeWork2.MyImage;
 import HomeWork2.JPG;
 
-public class Algorithms extends JFrame {
+public class Algorithms  {
 	
 	
 	
@@ -115,5 +115,51 @@ public class Algorithms extends JFrame {
 	
 	}
 	
+	public static void Hist_Equalization(MyImage img,String dest){
+		
+		JPG image = (JPG)img;
+		int [][][] jpgData = image.getJpgData();
+		
+		int [] graylevel = new int[image.getGraylevel()];
+		double [] grayratio = new double[image.getGraylevel()];
+		for(int i=0 ; i <image.getWidth();i++){
+			for (int j=0; j<image.getHeight();j++){
+				graylevel[jpgData[i][j][0]]++;
+			
+			}
+		}
+		
+		for(int i=0 ; i <grayratio.length;i++){
+			
+				grayratio[i] = graylevel[i]/(image.getWidth()*image.getHeight());
+			
+			
+		}
+//		int sum = 0;
+		for( double i:grayratio){
+			System.out.println(i);
+			
+		}
+//		for( int i:graylevel){
+//			System.out.println(i);
+//			
+//		}
+//		System.out.println(sum);
+		
+		
+		
+		
+		
+		
+	}
+	
+	public static void main(String [] args){
+		
+		 JPG jpg1 = new JPG("images\\lena.jpg");
+		 String dest = "Hist_EQ.jpg";
+		 Algorithms.Hist_Equalization(jpg1, dest);
+		
+		
+	}
 	
 }
