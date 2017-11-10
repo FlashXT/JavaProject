@@ -23,9 +23,9 @@ public class MainClass extends JPanel{
 //			    e.printStackTrace();
 //		}
 		
-	    JPG jpg1 = new JPG("images\\lena2.jpg");
-	    JPG jpg2 = new JPG("images\\sea.jpg");
-	    String dest = "images\\fusion.jpg";
+	    JPG jpg1 = new JPG("images\\Fig11.jpg");
+	    JPG jpg2 = new JPG("images\\Fig12.jpg");
+	    String dest = "Figfusion3.jpg";
 	    Algorithms.ImageFusion(jpg1,jpg2,0.5,0.5,dest);
 	    
 	}

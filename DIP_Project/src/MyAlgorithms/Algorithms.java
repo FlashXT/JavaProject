@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.*;
 import java.awt.peer.ComponentPeer;
 import java.awt.peer.LightweightPeer;
@@ -75,9 +77,11 @@ public class Algorithms extends JFrame {
 		
 		JPG jpg1 = (JPG) img1;
 		JPG jpg2 = (JPG) img2;
+		 BufferedImage bi = null;
 		int  [] mpixels = new int [jpg1.getWidth()*jpg1.getHeight()];
 		int [][][]jpg1Data = jpg1.getJpgData();
 		int [][][]jpg2Data = jpg2.getJpgData();
+		
 		int r,g,b;
 		for(int i = 0 ; i < jpg1Data.length ; i++){
 			for(int j = 0; j < jpg1Data[i].length ; j++){
@@ -89,9 +93,18 @@ public class Algorithms extends JFrame {
 //				fusionimage.setRGB(j,i,Rgb2Int(jpg1.getJpgData()[i][j][0],jpg1.getJpgData()[i][j][1],jpg1.getJpgData()[i][j][2]));
 				
 			}
-		}
-		
-//		snew drawImage().paintComponent(graph,jpg1.getWidth(),jpg1.getHeight(),mpixels);
+		}    
+		bi = new BufferedImage(jpg1.getWidth(),jpg1.getHeight(),BufferedImage.TYPE_INT_RGB);     
+        for(int i = 0 ; i < jpg1Data.length ; i++){
+			for(int j = 0; j < jpg1Data[i].length ; j++){
+				
+				bi.setRGB(j,i, mpixels[i*jpg1.getWidth()+j]);
+//				fusionimage.setRGB(j,i,Rgb2Int(jpg1.getJpgData()[i][j][0],jpg1.getJpgData()[i][j][1],jpg1.getJpgData()[i][j][2]));
+				
+			}
+		}    
+	             
+	    ImageIO.write(bi, "jpg",new File("images\\"+dest));
 	    System.out.println("Complete!");		
 			
 	}

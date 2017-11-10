@@ -153,8 +153,9 @@ public class JPG extends MyImage{
 		    for (int i = 0; i < height; i++) {
 	            for (int j = 0; j < width; j++) {
 	            	temp =  (jpgData[i][j][0]+ jpgData[i][j][1]+ jpgData[i][j][2])/3;
+//	            	temp =  (jpgData[i][j][0]*30+ jpgData[i][j][1]*59+ jpgData[i][j][2]*11 + 50) / 100;
 	            	if(temp >150){
-	            		int rgb =Rgb2Int(0,255,255);
+	            		int rgb =Rgb2Int(0,255,0);
 	            		image.setRGB(j,i,rgb);
 	            	}
 		        }
@@ -185,7 +186,7 @@ public class JPG extends MyImage{
 }
 	public static void main(String[] args) throws Exception {
 			// TODO Auto-generated method stub
-	        new JPG().jpgWriter("images\\flash.jpg","images\\flash2.jpg");
+	        new JPG().jpgWriter("images\\lena_color_512.jpg","images\\flash3.jpg");
 	 }
 	
 	
