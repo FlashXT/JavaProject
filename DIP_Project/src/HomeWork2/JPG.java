@@ -143,7 +143,7 @@ public class JPG extends MyImage{
 		    
 		    for (int i = 0; i < height; i++) {
 	            for (int j = 0; j < width; j++) {
-	                int pixel = image.getRGB(j,i); // 涓嬮潰涓夎浠ｇ爜灏嗕竴涓暟瀛楄浆鎹负RGB鏁板瓧
+	                int pixel = image.getRGB(j,i); 
 	                jpgData[i][j][0] = (pixel & 0xff0000) >> 16;
 	            	jpgData[i][j][1] = (pixel & 0xff00) >> 8;
 	            	jpgData[i][j][2] = (pixel & 0xff);
@@ -152,12 +152,14 @@ public class JPG extends MyImage{
 		    int temp = 0;
 		    for (int i = 0; i < height; i++) {
 	            for (int j = 0; j < width; j++) {
-	            	temp =  (jpgData[i][j][0]+ jpgData[i][j][1]+ jpgData[i][j][2])/3;
-//	            	temp =  (jpgData[i][j][0]*30+ jpgData[i][j][1]*59+ jpgData[i][j][2]*11 + 50) / 100;
-	            	if(temp >150){
-	            		int rgb =Rgb2Int(0,255,0);
+	            	//temp =  (jpgData[i][j][0]+ jpgData[i][j][1]+ jpgData[i][j][2])/3;
+	            	//灰度处理
+	            	temp = (jpgData[i][j][0]*30+ jpgData[i][j][1]*59+ jpgData[i][j][2]*11 + 50) / 100;
+//	            	if(temp >150){
+//	            		int rgb =Rgb2Int(0,255,0);
+	            		int rgb =Rgb2Int(temp,temp,temp);
 	            		image.setRGB(j,i,rgb);
-	            	}
+//	            	}
 		        }
 		    }
 		    ImageIO.write(image,"jpg",new File(dest));
@@ -186,7 +188,7 @@ public class JPG extends MyImage{
 }
 	public static void main(String[] args) throws Exception {
 			// TODO Auto-generated method stub
-	        new JPG().jpgWriter("images\\lena_color_512.jpg","images\\flash3.jpg");
+	        new JPG().jpgWriter("images\\SEABISCUIT2.jpg","images\\Seabiscuit_gray2.jpg");
 	 }
 	
 	
