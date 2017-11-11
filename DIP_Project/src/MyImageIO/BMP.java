@@ -3,6 +3,7 @@ package MyImageIO;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class BMP extends MyImage{
@@ -60,9 +61,12 @@ public class BMP extends MyImage{
 	 //Constructor
 	 public BMP(){	}
 	 
-	 public BMP(String src) throws Exception{
+	 public BMP(String src){
 		 
-		 FileInputStream fis=new FileInputStream(src);
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(src);
+		
 		 DataInputStream in=new DataInputStream(fis);
 		 //read the bitmap file header
 			//read the header of bitmap
@@ -120,6 +124,11 @@ public class BMP extends MyImage{
 					 
 				 }
 				 fis.close();in.close();
+				 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	 }
 	
 	 public String toString(){

@@ -3,14 +3,12 @@ package MyImageIO;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class ImageWriter {
-
-		
-	
 	
 	public static void JPGWriter(int pixels[][][],int width,int height,String dest){
 		
@@ -32,40 +30,47 @@ public class ImageWriter {
 	    	
 	
 }
-	public static void BMPWriter(BMP bitmap,byte[][] colortable,String dest) throws IOException{
-		 FileOutputStream fos=new FileOutputStream(dest);
-		 DataOutputStream dos = new DataOutputStream(fos);
+	public static void BMPWriter(BMP bitmap,byte[][] colortable,String dest){
+		 FileOutputStream fos;
+		try {
+			 fos = new FileOutputStream(dest);
+			 DataOutputStream dos = new DataOutputStream(fos);
 		
-		 dos.write(bitmap.getBmpheader());
-		 dos.write(bitmap.getFilesize());
-		 dos.write(bitmap.getReservedWord());
-		 dos.write(bitmap.getBitmapOffset());
-		 dos.write(bitmap.getBitmapInfoSize());
-		 dos.write(bitmap.getWidth());
-		 dos.write(bitmap.getHeight());
-		 dos.write(bitmap.getBitPlane());
-		 dos.write(bitmap.getBitCount());
-		 dos.write(bitmap.getCompressionType());
-		 dos.write(bitmap.getImageSize());
-		 dos.write(bitmap.getXpixelPerMeter());
-		 dos.write(bitmap.getYpixelPerMeter());
-		 dos.write(bitmap.getColorUsed());
-		 dos.write(bitmap.getImportantColor());
-				 
-		 for(int i=0;i < bitmap.getColorTable().length;i++){
-			   dos.write(colortable[i]);
-			 }
-		 	
-		 for(int i = 0; i < bitmap.getBmpData().length; i++)
-			 {
-				for(int j=0; j<bitmap.getBmpData()[i].length;j++)
-				{
-					
-					dos.write(bitmap.getBmpData()[i][j]);
-				}			 
-			 }
-		fos.close();dos.close();
-		System.out.println("Complete!");
+			 dos.write(bitmap.getBmpheader());
+			 dos.write(bitmap.getFilesize());
+			 dos.write(bitmap.getReservedWord());
+			 dos.write(bitmap.getBitmapOffset());
+			 dos.write(bitmap.getBitmapInfoSize());
+			 dos.write(bitmap.getWidth());
+			 dos.write(bitmap.getHeight());
+			 dos.write(bitmap.getBitPlane());
+			 dos.write(bitmap.getBitCount());
+			 dos.write(bitmap.getCompressionType());
+			 dos.write(bitmap.getImageSize());
+			 dos.write(bitmap.getXpixelPerMeter());
+			 dos.write(bitmap.getYpixelPerMeter());
+			 dos.write(bitmap.getColorUsed());
+			 dos.write(bitmap.getImportantColor());
+					 
+			 for(int i=0;i < bitmap.getColorTable().length;i++){
+				   dos.write(colortable[i]);
+				 }
+			 	
+			 for(int i = 0; i < bitmap.getBmpData().length; i++)
+				 {
+					for(int j=0; j<bitmap.getBmpData()[i].length;j++)
+					{
+						
+						dos.write(bitmap.getBmpData()[i][j]);
+					}			 
+				 }
+			fos.close();dos.close();
+			System.out.println("Complete!");
+		
+		  } catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	public static int Rgb2Int(int red, int green, int blue){

@@ -1,23 +1,5 @@
 package MyAlgorithms;
 
-import java.io.DataOutputStream;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.*;
-import java.awt.peer.ComponentPeer;
-import java.awt.peer.LightweightPeer;
-
-import javax.imageio.ImageIO;
-
-import MyImageIO.BMP;
-import MyImageIO.ImageWriter;
 import MyImageIO.JPG;
 import MyImageIO.MyImage;
 
@@ -25,7 +7,7 @@ public class Algorithms  {
 	
 	
 	//二值化处理
-	public static byte[][] Binaryzation(byte[][] bmcolortable,int threshold) throws Exception{
+	public static byte[][] Binaryzation(byte[][] bmcolortable,int threshold){
 		
 		 int average=0;
 				 
@@ -49,7 +31,7 @@ public class Algorithms  {
 	}
 	
 	//图像融合
-	public static int [][][] ImageFusion(MyImage img1,MyImage img2,double rate1,double rate2) throws IOException{
+	public static int [][][] ImageFusion(MyImage img1,MyImage img2,double rate1,double rate2) {
 		
 		
 		
@@ -69,13 +51,12 @@ public class Algorithms  {
 
 			}
 		}   
-		return mpixels;
-		//ImageWriter.imageWriter(mpixels, jpg1.getWidth(),jpg1.getHeight(), dest);		
+		return mpixels;	
 			
 	}
 
 	//直方图均衡
-	public static int [][][] Hist_Equalization(MyImage img) throws IOException{
+	public static int [][][] Hist_Equalization(MyImage img) {
 		
 		JPG image = (JPG)img;
 		int [][][] jpgData = image.getJpgData();

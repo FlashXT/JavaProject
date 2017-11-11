@@ -1,41 +1,36 @@
 package HomeWork2;
 
 import java.io.IOException;
-import javax.swing.JPanel;
 
 import MyAlgorithms.Algorithms;
+import MyImageIO.BMP;
 import MyImageIO.ImageWriter;
 import MyImageIO.JPG;
 import MyImageIO.MyImage;
 
-public class MainClass extends JPanel{
+public class MainClass {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args){
 		
-		//二值化
-//		String src="images\\lena.bmp";
-//		 try {
-//			 	BMP bmp = new BMP(src);
-//			 	byte[][] colortable = Algorithms.Binaryzation(bmp.getColorTable(),30);
-//			 	ImageWriter.BMPWriter(bmp,colortable,"images\\lenabinaryzation.bmp");
-//			 	
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			    e.printStackTrace();
-//		}
+		
+		
+		
+		//二值化处理
+		BMP bmp = new BMP("images\\lena.bmp");
+	    ImageWriter.BMPWriter(bmp, Algorithms.Binaryzation(bmp.getColorTable(),30),"images\\lena_binaryzation.bmp");
+	    
+	    //灰度处理
+		JPG jpg = new JPG("images\\lena_color_512.jpg");
+	    ImageWriter.JPGWriter(Algorithms.ImageGray(jpg),jpg.getWidth(),jpg.getHeight(),"lena_512_gray.jpg");
+		
 		//图像融合
-//	    JPG jpg1 = new JPG("images\\lena.jpg");
-//	    JPG jpg2 = new JPG("images\\sea.jpg");
-//	    String dest = "lena&sea.jpg";
-//	    Algorithms.ImageFusion(jpg1,jpg2,0.6,0.4);
+	    JPG Fig1 = new JPG("images\\Fig1.jpg");
+	    JPG Fig2 = new JPG("images\\Fig2.jpg");
+	    ImageWriter.JPGWriter(Algorithms.ImageFusion(Fig1, Fig2, 0.5, 0.5),Fig1.getWidth(),Fig2.getHeight(),"Fig1&2fusion.jpg");
 	    
 		//直方图均衡
-		JPG jpg1 = new JPG("images\\lena_color_512.jpg");
-		String dest = "lena_512_gray.jpg";
-//		ImageWriter.JPGWriter(Algorithms.Hist_Equalization(jpg1),jpg1.getWidth(),jpg1.getHeight(),dest);
-		
-		
-		ImageWriter.JPGWriter(Algorithms.ImageGray(jpg1),jpg1.getWidth(),jpg1.getHeight(),dest);
+	    JPG jpg1 = new JPG("images\\lena.jpg");
+		ImageWriter.JPGWriter(Algorithms.Hist_Equalization(jpg1),jpg1.getWidth(),jpg1.getHeight(),"lena_Histeq.jpg");
 		 
 	}
 
