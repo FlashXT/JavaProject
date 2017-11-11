@@ -77,7 +77,7 @@ public class Algorithms  {
 		
 		JPG jpg1 = (JPG) img1;
 		JPG jpg2 = (JPG) img2;
-		 BufferedImage bi = null;
+		BufferedImage bi = null;
 		int  [] mpixels = new int [jpg1.getWidth()*jpg1.getHeight()];
 		int [][][]jpg1Data = jpg1.getJpgData();
 		int [][][]jpg2Data = jpg2.getJpgData();
@@ -115,49 +115,58 @@ public class Algorithms  {
 	
 	}
 	
-	public static void Hist_Equalization(MyImage img,String dest){
+	public static void Hist_Equalization(MyImage img,String dest) throws IOException{
 		
 		JPG image = (JPG)img;
 		int [][][] jpgData = image.getJpgData();
-		
 		int [] graylevel = new int[image.getGraylevel()];
 		double [] grayratio = new double[image.getGraylevel()];
+
 		for(int i=0 ; i <image.getWidth();i++){
 			for (int j=0; j<image.getHeight();j++){
 				graylevel[jpgData[i][j][0]]++;
-			
 			}
 		}
 		
+		int sum = 0;
 		for(int i=0 ; i <grayratio.length;i++){
-			
-				grayratio[i] = graylevel[i]/(image.getWidth()*image.getHeight());
-			
-			
+			 sum+=graylevel[i];
+		     grayratio[i] = sum*1.0/(image.getWidth()*image.getHeight());  
 		}
-//		int sum = 0;
-		for( double i:grayratio){
-			System.out.println(i);
-			
+		
+		for(int i=0 ; i <image.getWidth();i++){
+			for (int j=0; j<image.getHeight();j++){
+				jpgData[i][j][0] = (int) Math.floor(grayratio[jpgData[i][j][0]]*255);
+				jpgData[i][j][1] = (int) Math.floor(grayratio[jpgData[i][j][1]]*255);
+				jpgData[i][j][2] = (int) Math.floor(grayratio[jpgData[i][j][2]]*255);
+			}
 		}
-//		for( int i:graylevel){
-//			System.out.println(i);
-//			
-//		}
-//		System.out.println(sum);
 		
-		
-		
-		
-		
+		BufferedImage bi = null;
+		bi = new BufferedImage(image.getWidth(),image.getWidth(),BufferedImage.TYPE_INT_RGB);     
+        for(int i = 0 ; i < jpgData.length ; i++){
+			for(int j = 0; j < jpgData[i].length ; j++){
+				
+				bi.setRGB(j,i,  Rgb2Int(jpgData[i][j][0],jpgData[i][j][1],jpgData[i][j][2]));
+
+				
+			}
+		}    
+	             
+	    ImageIO.write(bi, "jpg",new File("images\\"+dest));
+	    System.out.println("Complete!");		
 		
 	}
 	
-	public static void main(String [] args){
+	
+	
+	
+	
+	public static void main(String [] args) throws IOException{
 		
-		 JPG jpg1 = new JPG("images\\lena.jpg");
+		 JPG jpg = new JPG("images\\lena2.jpg");
 		 String dest = "Hist_EQ.jpg";
-		 Algorithms.Hist_Equalization(jpg1, dest);
+		 Algorithms.Hist_Equalization(jpg,dest);
 		
 		
 	}
