@@ -1,50 +1,77 @@
 package MyImageIO;
 
 import java.awt.image.BufferedImage;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class ImageWriter {
-	
-	int [][] ImageData;
-	
-	public int[][] getImageData() {
-		return ImageData;
-	}
-	public void setImageData(int[][] imageData) {
-		ImageData = imageData;
-	}
-	
-	public ImageWriter(int [][] ImageData) {
-		this.ImageData = ImageData;
-	}
-	
-	
-	public void imageWriter(int w,int h,String dest){
+
 		
-//		 BufferedImage bi = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB); 
-//		 for(int i = 0 ; i < jpg1Data.length ; i++){
-//				for(int j = 0; j < jpg1Data[i].length ; j++){
-//					
-//					r = (int) (jpg1Data[i][j][0]*rate1+jpg2Data[i][j][0]*rate2);
-//					g = (int) (jpg1Data[i][j][1]*rate1+jpg2Data[i][j][1]*rate2);
-//					b = (int) (jpg1Data[i][j][2]*rate1+jpg2Data[i][j][2]*rate2);
-//					mpixels[i*jpg1.getWidth()+j] = Rgb2Int(r, g, b);
-//					fusionimage.setRGB(j,i,Rgb2Int(jpg1.getJpgData()[i][j][0],jpg1.getJpgData()[i][j][1],jpg1.getJpgData()[i][j][2]));
-//					
-//				}
-//			}    
-//		 try {
-//			ImageIO.write(bi, "jpg",new File("images\\"+dest));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			System.out.println("Error : Save the image faliure!");
-//		}      
+	
+	
+	public static void JPGWriter(int pixels[][][],int width,int height,String dest){
 		
+		BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);     
+	    for(int i = 0 ; i < width ; i++){
+			for(int j = 0; j < height ; j++){
+				bi.setRGB(j,i, Rgb2Int(pixels[i][j][0],pixels[i][j][1],pixels[i][j][2]));
+			}
+		}    
+	             
+	    try {
+				ImageIO.write(bi, "jpg",new File("images\\"+dest));
+				System.out.println("Complete!");	
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Failure!");	
+			}
+	    	
+	
+}
+	public static void BMPWriter(BMP bitmap,byte[][] colortable,String dest) throws IOException{
+		 FileOutputStream fos=new FileOutputStream(dest);
+		 DataOutputStream dos = new DataOutputStream(fos);
+		
+		 dos.write(bitmap.getBmpheader());
+		 dos.write(bitmap.getFilesize());
+		 dos.write(bitmap.getReservedWord());
+		 dos.write(bitmap.getBitmapOffset());
+		 dos.write(bitmap.getBitmapInfoSize());
+		 dos.write(bitmap.getWidth());
+		 dos.write(bitmap.getHeight());
+		 dos.write(bitmap.getBitPlane());
+		 dos.write(bitmap.getBitCount());
+		 dos.write(bitmap.getCompressionType());
+		 dos.write(bitmap.getImageSize());
+		 dos.write(bitmap.getXpixelPerMeter());
+		 dos.write(bitmap.getYpixelPerMeter());
+		 dos.write(bitmap.getColorUsed());
+		 dos.write(bitmap.getImportantColor());
+				 
+		 for(int i=0;i < bitmap.getColorTable().length;i++){
+			   dos.write(colortable[i]);
+			 }
+		 	
+		 for(int i = 0; i < bitmap.getBmpData().length; i++)
+			 {
+				for(int j=0; j<bitmap.getBmpData()[i].length;j++)
+				{
+					
+					dos.write(bitmap.getBmpData()[i][j]);
+				}			 
+			 }
+		fos.close();dos.close();
+		System.out.println("Complete!");
 	}
 	
+	public static int Rgb2Int(int red, int green, int blue){
+		
+		return red<<16|green<<8|blue;
+	
+	}
 
 }

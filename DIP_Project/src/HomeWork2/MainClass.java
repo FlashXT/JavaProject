@@ -1,33 +1,42 @@
 package HomeWork2;
 
 import java.io.IOException;
-
 import javax.swing.JPanel;
 
 import MyAlgorithms.Algorithms;
-import UI.UIFrame;
+import MyImageIO.ImageWriter;
+import MyImageIO.JPG;
+import MyImageIO.MyImage;
 
 public class MainClass extends JPanel{
 
 	public static void main(String[] args) throws IOException{
 		
-//		new UIFrame();  
-		
-//		String src="images\\Lena.bmp";
+		//二值化
+//		String src="images\\lena.bmp";
 //		 try {
 //			 	BMP bmp = new BMP(src);
-//			 	bmp.toString();
-//			 	Algorithms.Binaryzation(bmp,"lena2.bmp",30);
+//			 	byte[][] colortable = Algorithms.Binaryzation(bmp.getColorTable(),30);
+//			 	ImageWriter.BMPWriter(bmp,colortable,"images\\lenabinaryzation.bmp");
+//			 	
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			    e.printStackTrace();
 //		}
-		
-//	    JPG jpg1 = new JPG("images\\Fig1.jpg");
-//	    JPG jpg2 = new JPG("images\\Fig1.jpg");
-//	    String dest = "Figfusion.jpg";
-//	    Algorithms.ImageFusion(jpg1,jpg2,0.5,0.5,dest);
+		//图像融合
+//	    JPG jpg1 = new JPG("images\\lena.jpg");
+//	    JPG jpg2 = new JPG("images\\sea.jpg");
+//	    String dest = "lena&sea.jpg";
+//	    Algorithms.ImageFusion(jpg1,jpg2,0.6,0.4);
 	    
+		//直方图均衡
+		JPG jpg1 = new JPG("images\\lena_color_512.jpg");
+		String dest = "lena_512_gray.jpg";
+//		ImageWriter.JPGWriter(Algorithms.Hist_Equalization(jpg1),jpg1.getWidth(),jpg1.getHeight(),dest);
+		
+		
+		ImageWriter.JPGWriter(Algorithms.ImageGray(jpg1),jpg1.getWidth(),jpg1.getHeight(),dest);
+		 
 	}
 
 }
