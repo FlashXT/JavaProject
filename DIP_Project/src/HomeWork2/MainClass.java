@@ -1,12 +1,9 @@
 package HomeWork2;
 
-import java.io.IOException;
-
 import MyAlgorithms.Algorithms;
 import MyImageIO.BMP;
 import MyImageIO.ImageWriter;
 import MyImageIO.JPG;
-import MyImageIO.MyImage;
 
 public class MainClass {
 

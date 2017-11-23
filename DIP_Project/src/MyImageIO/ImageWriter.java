@@ -3,7 +3,6 @@ package MyImageIO;
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -13,9 +12,9 @@ public class ImageWriter {
 	public static void JPGWriter(int pixels[][][],int width,int height,String dest){
 		
 		BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);     
-	    for(int i = 0 ; i < width ; i++){
-			for(int j = 0; j < height ; j++){
-				bi.setRGB(j,i, Rgb2Int(pixels[i][j][0],pixels[i][j][1],pixels[i][j][2]));
+	    for(int i = 0 ; i < height; i++){
+			for(int j = 0; j < width ; j++){
+				bi.setRGB(j,i,Rgb2Int(pixels[i][j][0],pixels[i][j][1],pixels[i][j][2]));
 			}
 		}    
 	             

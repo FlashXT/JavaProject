@@ -63,8 +63,8 @@ public class Algorithms  {
 		int [] graylevel = new int[image.getGraylevel()];
 		double [] grayratio = new double[image.getGraylevel()];
 
-		for(int i=0 ; i <image.getWidth();i++){
-			for (int j=0; j<image.getHeight();j++){
+		for(int i=0 ; i <image.getHeight();i++){
+			for (int j=0; j<image.getWidth();j++){
 				graylevel[jpgData[i][j][0]]++;
 			}
 		}
@@ -75,8 +75,8 @@ public class Algorithms  {
 		     grayratio[i] = sum*1.0/(image.getWidth()*image.getHeight());  
 		}
 		
-		for(int i=0 ; i <image.getWidth();i++){
-			for (int j=0; j<image.getHeight();j++){
+		for(int i=0 ; i <image.getHeight();i++){
+			for (int j=0; j<image.getWidth();j++){
 				jpgData[i][j][0] = (int) Math.floor(grayratio[jpgData[i][j][0]]*255);
 				jpgData[i][j][1] = (int) Math.floor(grayratio[jpgData[i][j][1]]*255);
 				jpgData[i][j][2] = (int) Math.floor(grayratio[jpgData[i][j][2]]*255);
