@@ -26,8 +26,8 @@ public class MainClass {
 	    ImageWriter.JPGWriter(Algorithms.ImageFusion(Fig1, Fig2, 0.5, 0.5),Fig1.getWidth(),Fig2.getHeight(),"Fig1&2fusion.jpg");
 	    
 		//直方图均衡
-	    JPG jpg1 = new JPG("images\\lena.jpg");
-		ImageWriter.JPGWriter(Algorithms.Hist_Equalization(jpg1),jpg1.getWidth(),jpg1.getHeight(),"lena_Histeq.jpg");
+	    JPG jpg1 = new JPG("images\\Fig2.jpg");
+		ImageWriter.JPGWriter(Algorithms.Hist_Equalization(jpg1),jpg1.getWidth(),jpg1.getHeight(),"Fusion_Histeq.jpg");
 		 
 	}
 

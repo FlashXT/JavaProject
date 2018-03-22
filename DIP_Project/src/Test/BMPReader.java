@@ -1,9 +1,5 @@
-//BMPReader.java, from Mark Wutka
-//Revised by Xie-Hua Sun
-
 package Test;
 
-import java.awt.*;
 import java.io.*;
 import java.awt.image.*;
 
@@ -61,7 +57,7 @@ public class BMPReader extends Object
 	    in.readInt();
 	    
 	    int colorsUsed      = intelInt(in.readInt());
-	    int colorsImportant = intelInt(in.readInt());
+	   // int colorsImportant = intelInt(in.readInt());
 	    if(colorsUsed == 0) colorsUsed = 1<<bitCount;
 	    
 	    int colorTable[] = new int[colorsUsed];
