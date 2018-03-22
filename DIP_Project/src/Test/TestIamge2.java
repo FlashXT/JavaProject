@@ -2,7 +2,6 @@ package Test;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -47,7 +46,7 @@ public class TestIamge2 {
             }
           }
      public static void main(String[] args) throws Exception {
-        int x = 0;
+        //int x = 0;
         TestIamge2 rc = new TestIamge2();
         rc.setAlpha("D:\\xiao.jpg");
         rc.setAlpha("D:\\xiao.jpg");
